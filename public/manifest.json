@@ -1,18 +1,18 @@
 {
   "manifestVersion": 1,
-  "id": "plugin_template",
-  "name": "Plugin Template",
-  "author": "remnote",
-  "repoUrl": "",
+  "id": "remnote-speed-mode",
+  "name": "Speed Mode",
+  "author": "Jamesb",
+  "repoUrl": "https://github.com/bjsi/remnote-speed-mode",
   "version": {
     "major": 0,
     "minor": 0,
     "patch": 1
   },
   "theme": [],
-  "enableOnMobile": false,
-  "description": "",
-  "requestNative": false,
+  "enableOnMobile": true,
+  "description": "Helps you focus on your flashcard reviews.",
+  "requestNative": true,
   "requiredScopes": [
     {
       "type": "All",

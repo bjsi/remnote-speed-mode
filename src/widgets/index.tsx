@@ -1,41 +1,56 @@
 import { declareIndexPlugin, ReactRNPlugin, WidgetLocation } from '@remnote/plugin-sdk';
 import '../style.css';
 import '../App.css';
+import {
+  autoAnswerDelayKey,
+  autoAnswerKey,
+  autoShowAnswerDelayKey,
+  autoShowAnswerKey,
+  defaultAlarmDelay,
+  defaultAutoAnswerDelay,
+  defaultAutoShowAnswerDelay,
+  playAlarmDelayKey,
+  playAlarmKey,
+} from '../lib/consts';
 
 async function onActivate(plugin: ReactRNPlugin) {
-  // Register settings
-  await plugin.settings.registerStringSetting({
-    id: 'name',
-    title: 'What is your Name?',
-    defaultValue: 'Bob',
-  });
-
   await plugin.settings.registerBooleanSetting({
-    id: 'pizza',
-    title: 'Do you like pizza?',
+    id: playAlarmKey,
+    title: 'Play alarm',
     defaultValue: true,
   });
 
   await plugin.settings.registerNumberSetting({
-    id: 'favorite-number',
-    title: 'What is your favorite number?',
-    defaultValue: 42,
+    id: playAlarmDelayKey,
+    title: 'Play alarm after (seconds)',
+    defaultValue: defaultAlarmDelay,
   });
 
-  // A command that inserts text into the editor if focused.
-  await plugin.app.registerCommand({
-    id: 'editor-command',
-    name: 'Editor Command',
-    action: async () => {
-      plugin.editor.insertPlainText('Hello World!');
-    },
+  await plugin.settings.registerBooleanSetting({
+    id: autoShowAnswerKey,
+    title: 'Auto show answer',
+    defaultValue: false,
   });
 
-  // Show a toast notification to the user.
-  await plugin.app.toast("I'm a toast!");
+  await plugin.settings.registerNumberSetting({
+    id: autoShowAnswerDelayKey,
+    title: 'Auto show answer after (seconds)',
+    defaultValue: defaultAutoShowAnswerDelay,
+  });
 
-  // Register a sidebar widget.
-  await plugin.app.registerWidget('sample_widget', WidgetLocation.RightSidebar, {
+  await plugin.settings.registerBooleanSetting({
+    id: autoAnswerKey,
+    title: 'Auto answer',
+    defaultValue: false,
+  });
+
+  await plugin.settings.registerNumberSetting({
+    id: autoAnswerDelayKey,
+    title: 'Auto answer after (seconds)',
+    defaultValue: defaultAutoAnswerDelay,
+  });
+
+  await plugin.app.registerWidget('bar', WidgetLocation.QueueBelowTopBar, {
     dimensions: { height: 'auto', width: '100%' },
   });
 }
