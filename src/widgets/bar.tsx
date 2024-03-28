@@ -66,9 +66,9 @@ export function Bar() {
   const [answered, setAnswered] = React.useState(false);
 
   React.useEffect(() => {
-    const ivl = setInterval(() => {
+    const ivl = setInterval(async () => {
       const now = Date.now();
-      if (!cardId) {
+      if (!cardId || (await plugin.queue.isTypeAnswerEnabled())) {
         return;
       } else if (!playedAlarm && startTime && now - startTime > playAlarmDelay * 1000) {
         playAlarm();
