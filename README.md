@@ -1,4 +1,4 @@
-## RemNote Speed Mode
+## Queue Speed Mode
 
 ### Features
 
