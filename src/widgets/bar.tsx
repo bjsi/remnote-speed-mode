@@ -73,10 +73,15 @@ export function Bar() {
       } else if (!playedAlarm && startTime && now - startTime > playAlarmDelay * 1000) {
         playAlarm();
         setPlayedAlarm(true);
-      } else if (!showedAnswer && startTime && now - startTime > autoShowAnswerDelay * 1000) {
+      } else if (
+        !showedAnswer &&
+        autoShowAnswer &&
+        startTime &&
+        now - startTime > autoShowAnswerDelay * 1000
+      ) {
         plugin.queue.showAnswer();
         setShowedAnswer(true);
-      } else if (!answered && startTime && now - startTime > autoAnswerDelay * 1000) {
+      } else if (!answered && autoAnswer && startTime && now - startTime > autoAnswerDelay * 1000) {
         plugin.queue.rateCurrentCard(QueueInteractionScore.AGAIN);
         setAnswered(true);
       }
