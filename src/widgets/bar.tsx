@@ -62,7 +62,7 @@ export function Bar() {
         autoShowAnswerDelay + 1
       ),
     [autoShowAnswerDelay]
-  );
+  )!;
 
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
