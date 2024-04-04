@@ -29,7 +29,7 @@ async function onActivate(plugin: ReactRNPlugin) {
   await plugin.settings.registerBooleanSetting({
     id: autoShowAnswerKey,
     title: 'Auto show answer',
-    defaultValue: false,
+    defaultValue: true,
   });
 
   await plugin.settings.registerNumberSetting({
@@ -41,7 +41,7 @@ async function onActivate(plugin: ReactRNPlugin) {
   await plugin.settings.registerBooleanSetting({
     id: autoAnswerKey,
     title: 'Auto answer',
-    defaultValue: false,
+    defaultValue: true,
   });
 
   await plugin.settings.registerNumberSetting({

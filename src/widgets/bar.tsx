@@ -43,27 +43,26 @@ export function Bar() {
     () => plugin.settings.getSetting<boolean>(autoShowAnswerKey),
     []
   );
-  const autoShowAnswerDelay =
-    useTracker(
-      async () =>
-        // Ensure autoShowAnswerDelay is at least playAlarmDelay + 1
-        Math.max(
-          await plugin.settings.getSetting<number>(autoShowAnswerDelayKey),
-          playAlarmDelay + 1
-        ),
-      [playAlarmDelay]
-    ) || defaultAutoShowAnswerDelay;
+  const autoShowAnswerDelay = useTracker(
+    async () =>
+      // Ensure autoShowAnswerDelay is at least playAlarmDelay + 1
+      Math.max(
+        (await plugin.settings.getSetting<number>(autoShowAnswerDelayKey)) ||
+          defaultAutoShowAnswerDelay,
+        playAlarmDelay + 1
+      ),
+    [playAlarmDelay]
+  )!;
   const autoAnswer = useTracker(() => plugin.settings.getSetting<boolean>(autoAnswerKey), []);
-  const autoAnswerDelay =
-    useTracker(
-      async () =>
-        // Ensure autoAnswerDelay is at least autoShowAnswerDelay + 1
-        Math.max(
-          await plugin.settings.getSetting<number>(autoAnswerDelayKey),
-          autoShowAnswerDelay + 1
-        ),
-      [autoShowAnswerDelay]
-    ) || defaultAutoAnswerDelay;
+  const autoAnswerDelay = useTracker(
+    async () =>
+      // Ensure autoAnswerDelay is at least autoShowAnswerDelay + 1
+      Math.max(
+        (await plugin.settings.getSetting<number>(autoAnswerDelayKey)) || defaultAutoAnswerDelay,
+        autoShowAnswerDelay + 1
+      ),
+    [autoShowAnswerDelay]
+  );
 
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
