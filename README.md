@@ -9,3 +9,5 @@
 ### Settings
 
 There are some settings you can adjust to set the time limits and enable/disable the auto show answer and auto answer features.
+The auto show answer time will be at least 1 second longer than the alarm time.
+The auto answer time will be at least 1 second longer than the auto show answer time.

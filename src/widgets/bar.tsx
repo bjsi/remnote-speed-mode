@@ -44,12 +44,26 @@ export function Bar() {
     []
   );
   const autoShowAnswerDelay =
-    useTracker(() => plugin.settings.getSetting<number>(autoShowAnswerDelayKey), []) ||
-    defaultAutoShowAnswerDelay;
+    useTracker(
+      async () =>
+        // Ensure autoShowAnswerDelay is at least playAlarmDelay + 1
+        Math.max(
+          await plugin.settings.getSetting<number>(autoShowAnswerDelayKey),
+          playAlarmDelay + 1
+        ),
+      [playAlarmDelay]
+    ) || defaultAutoShowAnswerDelay;
   const autoAnswer = useTracker(() => plugin.settings.getSetting<boolean>(autoAnswerKey), []);
   const autoAnswerDelay =
-    useTracker(() => plugin.settings.getSetting<number>(autoAnswerDelayKey), []) ||
-    defaultAutoAnswerDelay;
+    useTracker(
+      async () =>
+        // Ensure autoAnswerDelay is at least autoShowAnswerDelay + 1
+        Math.max(
+          await plugin.settings.getSetting<number>(autoAnswerDelayKey),
+          autoShowAnswerDelay + 1
+        ),
+      [autoShowAnswerDelay]
+    ) || defaultAutoAnswerDelay;
 
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
